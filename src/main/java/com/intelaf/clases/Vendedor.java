@@ -1,14 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.intelaf.clases;
 
 /**
  *
  * @author dylan
  */
-public class Vendedor {
+public class Vendedor extends Persona{
+    
+    public Vendedor(int DPI, int Telefono, String Nombre, String Direccion, String Correo) {
+        super(DPI, Telefono, Nombre, Direccion, Correo);
+    }
     
 }

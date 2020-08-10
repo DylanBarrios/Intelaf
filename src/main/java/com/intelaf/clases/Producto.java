@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.intelaf.clases;
 
 /**
@@ -11,4 +6,7 @@ package com.intelaf.clases;
  */
 public class Producto {
     
+    private int CodigoProducto, Cantidad, Garantia;
+    private String Nombre, Fabricante, Descripcion;
+    private double precio;
 }

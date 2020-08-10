@@ -1,5 +1,7 @@
 package com.mycompany.intelaf;
 
+import com.intelaf.gui.empleado.Menu;
+
 /**
  *
  * @author dylan
@@ -7,7 +9,7 @@ package com.mycompany.intelaf;
 public class Main {
 
     public static void main(String[] args) {
-        Login l = new Login();
+        Menu l = new Menu();
         l.setVisible(true);
     }
     

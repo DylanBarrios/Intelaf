@@ -43,7 +43,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu1.setText("Nuevo");
 
-        jMenuItem1.setText("Nueva TIenda");
+        jMenuItem1.setText("Nueva Tienda");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -51,13 +51,28 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem3.setText("Nuevo tiempo");
+        jMenuItem3.setText("Nuevo Tiempo");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setText("Nuevo Producto");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem4);
 
         jMenuItem5.setText("Nuevo Cliente");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem5);
 
         jMenuBar1.add(jMenu1);
@@ -95,13 +110,37 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         NuevaTienda nt = new NuevaTienda();
+        this.principal.removeAll();
         this.principal.add(nt);
         nt.show();
+        this.repaint();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        NuevoTiempo nt = new NuevoTiempo();
+        this.principal.removeAll();
+        this.principal.add(nt);
+        nt.show();
+        this.repaint();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        NuevoProducto np = new NuevoProducto();
+        this.principal.removeAll();
+        this.add(np);
+        np.show();
+        this.repaint();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        NuevoCliente nc = new NuevoCliente();
+        this.add(nc);
+        nc.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;

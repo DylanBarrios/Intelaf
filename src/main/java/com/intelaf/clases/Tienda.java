@@ -6,10 +6,10 @@ package com.intelaf.clases;
  */
 public class Tienda {
     
-    private int CodigoTienda, Telefono1, Telefono2;
-    private String Nombre, Direccion, Correo, Horario;
+    private int Telefono1, Telefono2;
+    private String CodigoTienda, Nombre, Direccion, Correo, Horario;
 
-    public Tienda(int CodigoTienda, int Telefono1, int Telefono2, String Nombre, String Direccion, String Correo, String Horario) {
+    public Tienda(String CodigoTienda, int Telefono1, int Telefono2, String Nombre, String Direccion, String Correo, String Horario) {
         this.CodigoTienda = CodigoTienda;
         this.Telefono1 = Telefono1;
         this.Telefono2 = Telefono2;
@@ -19,11 +19,11 @@ public class Tienda {
         this.Horario = Horario;
     }
 
-    public int getCodigoTienda() {
+    public String getCodigoTienda() {
         return CodigoTienda;
     }
 
-    public void setCodigoTienda(int CodigoTienda) {
+    public void setCodigoTienda(String CodigoTienda) {
         this.CodigoTienda = CodigoTienda;
     }
 

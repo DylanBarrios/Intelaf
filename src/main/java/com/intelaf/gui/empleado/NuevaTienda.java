@@ -1,7 +1,9 @@
 package com.intelaf.gui.empleado;
 
+import com.intelaf.clases.Tienda;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,7 +12,7 @@ import javax.swing.ImageIcon;
 public class NuevaTienda extends javax.swing.JInternalFrame {
 
     public NuevaTienda() {
-        logo();
+      //  logo();
         initComponents();
     }
 
@@ -32,7 +34,7 @@ public class NuevaTienda extends javax.swing.JInternalFrame {
         txtNombre = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -42,6 +44,7 @@ public class NuevaTienda extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         Wallpaper = new javax.swing.JLabel();
 
+        setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Nombre");
@@ -62,18 +65,35 @@ public class NuevaTienda extends javax.swing.JInternalFrame {
         jLabel7.setText("Horario");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
         getContentPane().add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 240, 29));
+
+        txtTelefono1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefono1KeyTyped(evt);
+            }
+        });
         getContentPane().add(txtTelefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 240, 29));
+
+        txtTelefono2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefono2KeyTyped(evt);
+            }
+        });
         getContentPane().add(txtTelefono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 240, 29));
         getContentPane().add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 240, 29));
         getContentPane().add(txtHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 240, 29));
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 240, 29));
 
         jButton1.setText("Registrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, -1, 50));
 
         jLabel1.setText("Codigo");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 240, 30));
+        getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 240, 30));
 
         jLabel8.setText("Correo");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
@@ -112,6 +132,51 @@ public class NuevaTienda extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String Nombre, Direccion, Codigo = null, Correo, Horario, Telefono1String, Telefono2String;
+        int Telefono1=0, Telefono2=0;
+        
+        Nombre = txtNombre.getText();
+        Direccion = txtDireccion.getText();
+        Codigo = txtCodigo.getText();
+        Correo = txtCorreo.getText();
+        Horario = txtHorario.getText();
+        Telefono1String = txtTelefono1.getText();
+        Telefono2String = txtTelefono2.getText();
+        
+        if(Nombre.equals("") || Direccion.equals("") || Codigo.equals("") || Telefono1String.equals("")){
+            JOptionPane.showMessageDialog(null, "Por favor llene los campos obligatorios");
+        }else{
+            try {
+                Telefono1 = Integer.parseInt(Telefono1String);
+                if(!Telefono2String.equals("")){
+                    Telefono2 = Integer.parseInt(Telefono2String);
+                }
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error en el sistema, contacte con el programador");
+                JOptionPane.showMessageDialog(null, "Codigo de error: "+e);
+            }
+            Tienda tienda = new Tienda(Codigo, Telefono1, Telefono2, Nombre, Direccion, Correo, Horario);
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtTelefono1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefono1KeyTyped
+        char validar = evt.getKeyChar();
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefono1KeyTyped
+
+    private void txtTelefono2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefono2KeyTyped
+        char validar = evt.getKeyChar();
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefono2KeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Wallpaper;
@@ -130,7 +195,7 @@ public class NuevaTienda extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtHorario;

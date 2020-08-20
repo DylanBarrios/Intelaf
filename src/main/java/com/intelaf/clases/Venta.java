@@ -5,16 +5,25 @@ package com.intelaf.clases;
  * @author dylan
  */
 public class Venta {
-    private int CodigoVenta, CodigoProducto, Cantidad;
-    private double Total, CantidaEfectivo, CantidadCredito;
+    private int NIT, CodigoVenta, CodigoProducto, Cantidad;
+    private double Total, PagoEfectivo, PagoCredito;
 
-    public Venta(int CodigoVenta, int CodigoProducto, int Cantidad, double Total, double CantidaEfectivo, double CantidadCredito) {
+    public Venta(int NIT, int CodigoVenta, int CodigoProducto, int Cantidad, double Total, double PagoEfectivo, double PagoCredito) {
+        this.NIT = NIT;
         this.CodigoVenta = CodigoVenta;
         this.CodigoProducto = CodigoProducto;
         this.Cantidad = Cantidad;
         this.Total = Total;
-        this.CantidaEfectivo = CantidaEfectivo;
-        this.CantidadCredito = CantidadCredito;
+        this.PagoEfectivo = PagoEfectivo;
+        this.PagoCredito = PagoCredito;
+    }
+
+    public int getNIT() {
+        return NIT;
+    }
+
+    public void setNIT(int NIT) {
+        this.NIT = NIT;
     }
 
     public int getCodigoVenta() {
@@ -49,21 +58,21 @@ public class Venta {
         this.Total = Total;
     }
 
-    public double getCantidaEfectivo() {
-        return CantidaEfectivo;
+    public double getPagoEfectivo() {
+        return PagoEfectivo;
     }
 
-    public void setCantidaEfectivo(double CantidaEfectivo) {
-        this.CantidaEfectivo = CantidaEfectivo;
+    public void setPagoEfectivo(double PagoEfectivo) {
+        this.PagoEfectivo = PagoEfectivo;
     }
 
-    public double getCantidadCredito() {
-        return CantidadCredito;
+    public double getPagoCredito() {
+        return PagoCredito;
     }
 
-    public void setCantidadCredito(double CantidadCredito) {
-        this.CantidadCredito = CantidadCredito;
+    public void setPagoCredito(double PagoCredito) {
+        this.PagoCredito = PagoCredito;
     }
-    
+
     
 }

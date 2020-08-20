@@ -1,6 +1,7 @@
 package com.mycompany.intelaf;
 
 import com.intelaf.gui.empleado.Menu;
+import pruebas.PruebaCargaDeDatos;
 
 /**
  *
@@ -9,8 +10,11 @@ import com.intelaf.gui.empleado.Menu;
 public class Main {
 
     public static void main(String[] args) {
-        Menu l = new Menu();
-        l.setVisible(true);
+//        Menu l = new Menu();
+//        l.setVisible(true);
+
+        PruebaCargaDeDatos p = new PruebaCargaDeDatos();
+        p.setVisible(true);
     }
     
 }

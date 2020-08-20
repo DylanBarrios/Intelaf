@@ -5,18 +5,22 @@ package com.intelaf.clases;
  * @author dylan
  */
 public class Pedido {
-    private int CodigoPedido, Cantidad;
-    private String TiendaOrigen, TiendaDestino;
-    private String Cliente, Articulo, Fecha;
+    private int CodigoPedido, CodigoProducto, CodigoCliente, CodigoTET;
+    private int Cantidad; 
+    private double Total, Anticipo;
+    private String FechaSalida;
+    private Boolean Entregado;
 
-    public Pedido(int CodigoPedido, int Cantidad, String TiendaOrigen, String TiendaDestino, String Cliente, String Articulo, String Fecha) {
+    public Pedido(int CodigoPedido, int CodigoProducto, int CodigoCliente, int CodigoTET, Double Anticipo, int Cantidad, double Total, String FechaSalida, Boolean Entregado) {
         this.CodigoPedido = CodigoPedido;
+        this.CodigoProducto = CodigoProducto;
+        this.CodigoCliente = CodigoCliente;
+        this.CodigoTET = CodigoTET;
+        this.Anticipo = Anticipo;
         this.Cantidad = Cantidad;
-        this.TiendaOrigen = TiendaOrigen;
-        this.TiendaDestino = TiendaDestino;
-        this.Cliente = Cliente;
-        this.Articulo = Articulo;
-        this.Fecha = Fecha;
+        this.Total = Total;
+        this.FechaSalida = FechaSalida;
+        this.Entregado = Entregado;
     }
 
     public int getCodigoPedido() {
@@ -27,6 +31,38 @@ public class Pedido {
         this.CodigoPedido = CodigoPedido;
     }
 
+    public int getCodigoProducto() {
+        return CodigoProducto;
+    }
+
+    public void setCodigoProducto(int CodigoProducto) {
+        this.CodigoProducto = CodigoProducto;
+    }
+
+    public int getCodigoCliente() {
+        return CodigoCliente;
+    }
+
+    public void setCodigoCliente(int CodigoCliente) {
+        this.CodigoCliente = CodigoCliente;
+    }
+
+    public int getCodigoTET() {
+        return CodigoTET;
+    }
+
+    public void setCodigoTET(int CodigoTET) {
+        this.CodigoTET = CodigoTET;
+    }
+
+    public Double getAnticipo() {
+        return Anticipo;
+    }
+
+    public void setAnticipo(Double Anticipo) {
+        this.Anticipo = Anticipo;
+    }
+
     public int getCantidad() {
         return Cantidad;
     }
@@ -35,45 +71,29 @@ public class Pedido {
         this.Cantidad = Cantidad;
     }
 
-    public String getTiendaOrigen() {
-        return TiendaOrigen;
+    public double getTotal() {
+        return Total;
     }
 
-    public void setTiendaOrigen(String TiendaOrigen) {
-        this.TiendaOrigen = TiendaOrigen;
+    public void setTotal(double Total) {
+        this.Total = Total;
     }
 
-    public String getTiendaDestino() {
-        return TiendaDestino;
+    public String getFechaSalida() {
+        return FechaSalida;
     }
 
-    public void setTiendaDestino(String TiendaDestino) {
-        this.TiendaDestino = TiendaDestino;
+    public void setFechaSalida(String FechaSalida) {
+        this.FechaSalida = FechaSalida;
     }
 
-    public String getCliente() {
-        return Cliente;
+    public Boolean getEntregado() {
+        return Entregado;
     }
 
-    public void setCliente(String Cliente) {
-        this.Cliente = Cliente;
+    public void setEntregado(Boolean Entregado) {
+        this.Entregado = Entregado;
     }
 
-    public String getArticulo() {
-        return Articulo;
-    }
-
-    public void setArticulo(String Articulo) {
-        this.Articulo = Articulo;
-    }
-
-    public String getFecha() {
-        return Fecha;
-    }
-
-    public void setFecha(String Fecha) {
-        this.Fecha = Fecha;
-    }
-    
     
 }

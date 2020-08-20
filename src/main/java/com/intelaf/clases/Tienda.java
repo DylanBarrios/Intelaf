@@ -6,41 +6,25 @@ package com.intelaf.clases;
  */
 public class Tienda {
     
-    private int CodigoTienda, Telefono1, Telefono2;
-    private String Nombre, Direccion, Correo, Horario;
+    private String CodigoTienda, Nombre, Direccion;
+    private String Telefono1, Telefono2, Correo, Horario;
 
-    public Tienda(int CodigoTienda, int Telefono1, int Telefono2, String Nombre, String Direccion, String Correo, String Horario) {
+    public Tienda(String CodigoTienda, String Nombre, String Direccion, String Telefono1, String Telefono2, String Correo, String Horario) {
         this.CodigoTienda = CodigoTienda;
-        this.Telefono1 = Telefono1;
-        this.Telefono2 = Telefono2;
         this.Nombre = Nombre;
         this.Direccion = Direccion;
+        this.Telefono1 = Telefono1;
+        this.Telefono2 = Telefono2;
         this.Correo = Correo;
         this.Horario = Horario;
     }
 
-    public int getCodigoTienda() {
+    public String getCodigoTienda() {
         return CodigoTienda;
     }
 
-    public void setCodigoTienda(int CodigoTienda) {
+    public void setCodigoTienda(String CodigoTienda) {
         this.CodigoTienda = CodigoTienda;
-    }
-
-    public int getTelefono1() {
-        return Telefono1;
-    }
-
-    public void setTelefono1(int Telefono1) {
-        this.Telefono1 = Telefono1;
-    }
-
-    public int getTelefono2() {
-        return Telefono2;
-    }
-
-    public void setTelefono2(int Telefono2) {
-        this.Telefono2 = Telefono2;
     }
 
     public String getNombre() {
@@ -57,6 +41,22 @@ public class Tienda {
 
     public void setDireccion(String Direccion) {
         this.Direccion = Direccion;
+    }
+
+    public String getTelefono1() {
+        return Telefono1;
+    }
+
+    public void setTelefono1(String Telefono1) {
+        this.Telefono1 = Telefono1;
+    }
+
+    public String getTelefono2() {
+        return Telefono2;
+    }
+
+    public void setTelefono2(String Telefono2) {
+        this.Telefono2 = Telefono2;
     }
 
     public String getCorreo() {

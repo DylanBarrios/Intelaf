@@ -27,7 +27,6 @@ public class NuevoProducto extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -41,7 +40,6 @@ public class NuevoProducto extends javax.swing.JInternalFrame {
         txtCodigo = new javax.swing.JTextField();
         txtCantidad = new javax.swing.JTextField();
         txtPrecio = new javax.swing.JTextField();
-        txtTienda = new javax.swing.JTextField();
         txtDescripcion = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
@@ -51,12 +49,10 @@ public class NuevoProducto extends javax.swing.JInternalFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         Wallpaper = new javax.swing.JLabel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setText("Tienda");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
 
         jLabel2.setText("Fabricante");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
@@ -77,18 +73,17 @@ public class NuevoProducto extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
 
         jLabel8.setText("Garantia");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 218, -1, -1));
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 180, 30));
         getContentPane().add(txtFabricante, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 180, 30));
-        getContentPane().add(txtGarantia, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 180, 30));
+        getContentPane().add(txtGarantia, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 180, 30));
         getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 180, 30));
         getContentPane().add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 180, 30));
         getContentPane().add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 180, 30));
-        getContentPane().add(txtTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 180, 30));
         getContentPane().add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 180, 30));
 
         jButton1.setText("Registrar");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 327, -1, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, 40));
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 0, 51));
@@ -117,12 +112,15 @@ public class NuevoProducto extends javax.swing.JInternalFrame {
 
         jLabel14.setForeground(new java.awt.Color(255, 0, 51));
         jLabel14.setText("Los campos con *");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, -1, -1));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
 
         jLabel15.setForeground(new java.awt.Color(255, 0, 51));
         jLabel15.setText("son obligatorios");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, -1, -1));
-        getContentPane().add(Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 380));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, -1, -1));
+
+        jLabel1.setText("(en meses)");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
+        getContentPane().add(Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -153,6 +151,5 @@ public class NuevoProducto extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtGarantia;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;
-    private javax.swing.JTextField txtTienda;
     // End of variables declaration//GEN-END:variables
 }

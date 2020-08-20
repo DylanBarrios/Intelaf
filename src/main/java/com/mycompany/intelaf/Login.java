@@ -19,9 +19,7 @@ public class Login extends javax.swing.JFrame {
         btnCliente = new javax.swing.JButton();
         btnEmpleado = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        txtClave = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
         Wallpaper = new javax.swing.JLabel();
@@ -51,13 +49,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuario");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Clave");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, -1, -1));
         getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 195, 39));
-        getContentPane().add(txtClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 195, 40));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -86,10 +78,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton btnCliente;
     private javax.swing.JButton btnEmpleado;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblLogo;
-    private javax.swing.JTextField txtClave;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 

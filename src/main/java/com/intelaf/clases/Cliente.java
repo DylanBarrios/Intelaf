@@ -5,21 +5,11 @@ package com.intelaf.clases;
  * @author dylan
  */
 public class Cliente extends Persona{
-    String NIT;
-    int CreditoCompra;
-    
-    public Cliente(int DPI, int Telefono, String Nombre, String Direccion, String Correo, String NIT, int CreditoCompra){
-        super(DPI, Telefono, Nombre, Direccion, Correo);
-        this.NIT = NIT;
+    private int CreditoCompra;
+
+    public Cliente(int CreditoCompra, String Nombre, String Telefono, String DPI, String NIT, String Direccion, String Correo) {
+        super(Nombre, Telefono, DPI, NIT, Direccion, Correo);
         this.CreditoCompra = CreditoCompra;
-    }
-
-    public String getNIT() {
-        return NIT;
-    }
-
-    public void setNIT(String NIT) {
-        this.NIT = NIT;
     }
 
     public int getCreditoCompra() {
@@ -29,7 +19,5 @@ public class Cliente extends Persona{
     public void setCreditoCompra(int CreditoCompra) {
         this.CreditoCompra = CreditoCompra;
     }
-    
-    
     
 }

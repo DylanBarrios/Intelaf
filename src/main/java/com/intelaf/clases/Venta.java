@@ -5,16 +5,53 @@ package com.intelaf.clases;
  * @author dylan
  */
 public class Venta {
-    private int CodigoVenta, CodigoProducto, Cantidad;
-    private double Total, CantidaEfectivo, CantidadCredito;
+    private String CodigoProducto, CodigoVendedor;
+    private String FechaRealizada, NIT;
+    private int CodigoVenta, Cantidad;
+    private double Total, PagoCredito, PagoEfectivo;
 
-    public Venta(int CodigoVenta, int CodigoProducto, int Cantidad, double Total, double CantidaEfectivo, double CantidadCredito) {
-        this.CodigoVenta = CodigoVenta;
+    public Venta(String CodigoProducto, String CodigoVendedor, String FechaRealizada, String NIT, int CodigoVenta, int Cantidad, double Total, double PagoCredito, double PagoEfectivo) {
         this.CodigoProducto = CodigoProducto;
+        this.CodigoVendedor = CodigoVendedor;
+        this.FechaRealizada = FechaRealizada;
+        this.NIT = NIT;
+        this.CodigoVenta = CodigoVenta;
         this.Cantidad = Cantidad;
         this.Total = Total;
-        this.CantidaEfectivo = CantidaEfectivo;
-        this.CantidadCredito = CantidadCredito;
+        this.PagoCredito = PagoCredito;
+        this.PagoEfectivo = PagoEfectivo;
+    }
+
+    public String getCodigoProducto() {
+        return CodigoProducto;
+    }
+
+    public void setCodigoProducto(String CodigoProducto) {
+        this.CodigoProducto = CodigoProducto;
+    }
+
+    public String getCodigoVendedor() {
+        return CodigoVendedor;
+    }
+
+    public void setCodigoVendedor(String CodigoVendedor) {
+        this.CodigoVendedor = CodigoVendedor;
+    }
+
+    public String getFechaRealizada() {
+        return FechaRealizada;
+    }
+
+    public void setFechaRealizada(String FechaRealizada) {
+        this.FechaRealizada = FechaRealizada;
+    }
+
+    public String getNIT() {
+        return NIT;
+    }
+
+    public void setNIT(String NIT) {
+        this.NIT = NIT;
     }
 
     public int getCodigoVenta() {
@@ -23,14 +60,6 @@ public class Venta {
 
     public void setCodigoVenta(int CodigoVenta) {
         this.CodigoVenta = CodigoVenta;
-    }
-
-    public int getCodigoProducto() {
-        return CodigoProducto;
-    }
-
-    public void setCodigoProducto(int CodigoProducto) {
-        this.CodigoProducto = CodigoProducto;
     }
 
     public int getCantidad() {
@@ -49,21 +78,21 @@ public class Venta {
         this.Total = Total;
     }
 
-    public double getCantidaEfectivo() {
-        return CantidaEfectivo;
+    public double getPagoCredito() {
+        return PagoCredito;
     }
 
-    public void setCantidaEfectivo(double CantidaEfectivo) {
-        this.CantidaEfectivo = CantidaEfectivo;
+    public void setPagoCredito(double PagoCredito) {
+        this.PagoCredito = PagoCredito;
     }
 
-    public double getCantidadCredito() {
-        return CantidadCredito;
+    public double getPagoEfectivo() {
+        return PagoEfectivo;
     }
 
-    public void setCantidadCredito(double CantidadCredito) {
-        this.CantidadCredito = CantidadCredito;
+    public void setPagoEfectivo(double PagoEfectivo) {
+        this.PagoEfectivo = PagoEfectivo;
     }
-    
+            
     
 }

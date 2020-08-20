@@ -33,6 +33,7 @@ public class NuevoTiempo extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         Wallpaper = new javax.swing.JLabel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -54,6 +55,9 @@ public class NuevoTiempo extends javax.swing.JInternalFrame {
 
         jTextField1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 80, 38));
+
+        jLabel1.setText("dias");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, -1, -1));
         getContentPane().add(Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 150));
 
         pack();
@@ -64,6 +68,7 @@ public class NuevoTiempo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel Wallpaper;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

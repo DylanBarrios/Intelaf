@@ -152,7 +152,7 @@ public class NuevaTienda extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        AlmacenarDatos(CapturarDatos());                                                       //Enviamos los datos a mysql
+        CapturarDatos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
@@ -203,11 +203,11 @@ public class NuevaTienda extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTelefono2;
     // End of variables declaration//GEN-END:variables
 
-    private Tienda CapturarDatos() {
+    private void CapturarDatos() {
         String Nombre = txtNombre.getText();
         String Direccion = txtDireccion.getText();
-        String CodigoTienda = txtTelefono2.getText();
-        String Telefono1 = txtCodigo.getText();
+        String CodigoTienda = txtCodigo.getText();
+        String Telefono1 = txtTelefono1.getText();
         String Telefono2 = txtTelefono2.getText();
         String Correo = txtCorreo.getText();
         String Horario = txtHorario.getText();
@@ -215,22 +215,7 @@ public class NuevaTienda extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Por favor rellene los campos obligatorios");
         } else {
             Tienda tienda = new Tienda(CodigoTienda, Nombre, Direccion, Telefono1, Telefono2, Correo, Horario);
-            return tienda;
-        }
-        return null;
-    }
-
-    private void AlmacenarDatos(Tienda tienda) {
-        if (tienda != null) {
-            String Codigo = tienda.getCodigoTienda();
-            String Nombre = tienda.getNombre();
-            String Direccion = tienda.getDireccion();
-            String Telefono1 = tienda.getTelefono1();
-            String Telefono2 = tienda.getTelefono2();
-            String Correo = tienda.getCorreo();
-            String Horario = tienda.getHorario();
-
-            NuevaTiendaMysql tiendaMysql = new NuevaTiendaMysql(Codigo, Nombre, Direccion, Telefono1, Telefono2, Correo, Horario);
+            NuevaTiendaMysql tiendaMysql = new NuevaTiendaMysql(tienda);
         }
     }
 

@@ -129,7 +129,7 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        AlmacenarDatos(CapturarDatos());
+        CapturarDatos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtNITKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNITKeyTyped
@@ -180,7 +180,7 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 
-    private Cliente CapturarDatos() {
+    private void CapturarDatos() {
         double CreditoCompra = 0.0;
         String Nombre = txtNombre.getText();
         String Telefono = txtTelefono.getText();
@@ -192,21 +192,8 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Por favor rellene los campos obligatorios");
         } else {
             Cliente cliente = new Cliente(CreditoCompra, Nombre, Telefono, DPI, NIT, Direccion, Correo);
-            return cliente;
+            NuevoClienteMysql clienteMysql = new NuevoClienteMysql(cliente);
         }
-        return null;
     }
 
-    private void AlmacenarDatos(Cliente cliente) {
-        if (cliente != null) {
-            double CreditoCompra = cliente.getCreditoCompra();
-            String Nombre = cliente.getNombre();
-            String Telefono = cliente.getTelefono();
-            String DPI = cliente.getDPI();
-            String NIT = cliente.getNIT();
-            String Direccion = cliente.getDireccion();
-            String Correo = cliente.getCorreo();
-            NuevoClienteMysql clienteMysql = new NuevoClienteMysql(CreditoCompra, Nombre, Telefono, DPI, NIT, Direccion, Correo);
-        }
-    }
 }

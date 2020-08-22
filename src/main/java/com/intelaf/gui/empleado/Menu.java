@@ -5,10 +5,18 @@ package com.intelaf.gui.empleado;
  * @author dylan
  */
 public class Menu extends javax.swing.JFrame {
-
-    public Menu() {
+    
+    static String CodigoTienda;
+    String CodigoUsuario;
+    
+    public Menu(String codigoTienda, String codigoUsuario) {
+        this.CodigoTienda = codigoTienda;
+        this.CodigoUsuario = codigoUsuario;
         initComponents();
         this.setLocationRelativeTo(null);
+    }
+
+    public Menu() {
     }
 
     @SuppressWarnings("unchecked")
@@ -136,9 +144,12 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuProductoActionPerformed
 
     private void MenuEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuEmpleadoActionPerformed
-        NuevoProducto producto = new NuevoProducto();
+        NuevoProducto NuevoProducto = new NuevoProducto();
+        AgregarProductoTienda producto = new AgregarProductoTienda(NuevoProducto, CodigoTienda);
         principal.add(producto);
         producto.setVisible(true);
+        principal.add(NuevoProducto);
+        NuevoProducto.setVisible(false);
     }//GEN-LAST:event_MenuEmpleadoActionPerformed
 
     private void MenuTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuTiendaActionPerformed
@@ -154,7 +165,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuTiempoActionPerformed
 
     private void MenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuClienteActionPerformed
-        NuevoTiempo tiempo = new NuevoTiempo();
+        NuevoTiempo tiempo = new NuevoTiempo(CodigoTienda);
         principal.add(tiempo);
         tiempo.setVisible(true);
     }//GEN-LAST:event_MenuClienteActionPerformed
@@ -174,4 +185,12 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JDesktopPane principal;
     // End of variables declaration//GEN-END:variables
+
+    public String getCodigoTienda(){
+        return CodigoTienda;
+    }
+
+    public void Mostrar(NuevoProducto NuevoProducto) {
+        NuevoProducto.setVisible(true);
+    }
 }

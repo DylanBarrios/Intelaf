@@ -1,5 +1,10 @@
 package com.intelaf.gui.empleado;
 
+import com.intelaf.clases.Vendedor;
+import com.intelaf.mysql.NuevoProductoMysql;
+import com.intelaf.mysql.NuevoVendedorMysql;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author dylan
@@ -20,19 +25,19 @@ public class NuevoVendedor extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
+        txtNIT = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
+        txtDPI = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
+        txtDireccion = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -60,32 +65,37 @@ public class NuevoVendedor extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Direccion");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 135, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 95, 150, 25));
+        getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 95, 150, 25));
 
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNIT.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
+                txtNITKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 150, 25));
+        getContentPane().add(txtNIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 150, 25));
 
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField3KeyTyped(evt);
+                txtTelefonoKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 165, 150, 25));
+        getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 165, 150, 25));
 
-        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtDPI.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField4KeyTyped(evt);
+                txtDPIKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 150, 25));
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 235, 150, 25));
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 150, 25));
+        getContentPane().add(txtDPI, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 150, 25));
+        getContentPane().add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 235, 150, 25));
+        getContentPane().add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 150, 25));
 
         jButton1.setText("Registrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, -1, 40));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -110,7 +120,7 @@ public class NuevoVendedor extends javax.swing.JInternalFrame {
         jLabel11.setForeground(new java.awt.Color(255, 0, 51));
         jLabel11.setText("son obligatorios");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, -1, -1));
-        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 150, 25));
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 150, 25));
 
         jLabel12.setText("Codigo");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 100, -1, -1));
@@ -142,29 +152,33 @@ public class NuevoVendedor extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
         char tipeado = evt.getKeyChar();
         if (Character.isLetter(tipeado)) {
             getToolkit().beep();
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField3KeyTyped
+    }//GEN-LAST:event_txtTelefonoKeyTyped
 
-    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
+    private void txtDPIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDPIKeyTyped
         char tipeado = evt.getKeyChar();
         if (Character.isLetter(tipeado)) {
             getToolkit().beep();
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField4KeyTyped
+    }//GEN-LAST:event_txtDPIKeyTyped
 
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+    private void txtNITKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNITKeyTyped
         char tipeado = evt.getKeyChar();
         if (Character.isLetter(tipeado)) {
             getToolkit().beep();
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField2KeyTyped
+    }//GEN-LAST:event_txtNITKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CapturarDatos();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -186,12 +200,30 @@ public class NuevoVendedor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtDPI;
+    private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtNIT;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+
+    private void CapturarDatos() {
+        String Codigo = txtCodigo.getText();
+        String Nombre = txtNombre.getText();
+        String Telefono = txtTelefono.getText();
+        String DPI = txtDPI.getText();
+        String NIT = txtNIT.getText();
+        String Direccion = txtDireccion.getText();
+        String Correo = txtCorreo.getText();
+
+        if (Codigo.equals("") || Nombre.equals("") || Telefono.equals("") || DPI.equals("") || Direccion.equals("") || Correo.equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor llene los campos obligatorios");
+        } else {
+            Vendedor vendedor = new Vendedor(Codigo, Nombre, Telefono, DPI, NIT, Direccion, Correo);
+            NuevoVendedorMysql vendedorMysql = new NuevoVendedorMysql(vendedor);
+        }
+    }
+
 }

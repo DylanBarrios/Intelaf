@@ -6,11 +6,11 @@ package com.intelaf.clases;
  */
 public class Producto {
     
-    private int CodigoProducto, Garantia;
-    private String Nombre, Fabricante, Descripcion;
+    private int Garantia;
+    private String CodigoProducto, Nombre, Fabricante, Descripcion;
     private double precio;
 
-    public Producto(int CodigoProducto, int Garantia, String Nombre, String Fabricante, String Descripcion, double precio) {
+    public Producto(String CodigoProducto, int Garantia, String Nombre, String Fabricante, String Descripcion, double precio) {
         this.CodigoProducto = CodigoProducto;
         this.Garantia = Garantia;
         this.Nombre = Nombre;
@@ -19,11 +19,11 @@ public class Producto {
         this.precio = precio;
     }
 
-    public int getCodigoProducto() {
+    public String getCodigoProducto() {
         return CodigoProducto;
     }
 
-    public void setCodigoProducto(int CodigoProducto) {
+    public void setCodigoProducto(String CodigoProducto) {
         this.CodigoProducto = CodigoProducto;
     }
 

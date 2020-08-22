@@ -5,9 +5,18 @@ package com.intelaf.gui.empleado;
  * @author dylan
  */
 public class Menu extends javax.swing.JFrame {
+    
+    static String CodigoTienda;
+    String CodigoUsuario;
+    
+    public Menu(String codigoTienda, String codigoUsuario) {
+        this.CodigoTienda = codigoTienda;
+        this.CodigoUsuario = codigoUsuario;
+        initComponents();
+        this.setLocationRelativeTo(null);
+    }
 
     public Menu() {
-        initComponents();
     }
 
     @SuppressWarnings("unchecked")
@@ -19,11 +28,11 @@ public class Menu extends javax.swing.JFrame {
         principal = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
+        MenuProducto = new javax.swing.JMenuItem();
+        MenuEmpleado = new javax.swing.JMenuItem();
+        MenuTienda = new javax.swing.JMenuItem();
+        MenuTiempo = new javax.swing.JMenuItem();
+        MenuCliente = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -38,29 +47,54 @@ public class Menu extends javax.swing.JFrame {
         principal.setLayout(principalLayout);
         principalLayout.setHorizontalGroup(
             principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 840, Short.MAX_VALUE)
         );
         principalLayout.setVerticalGroup(
             principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGap(0, 507, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Nuevo");
 
-        jMenuItem8.setText("Nuevo Cliente");
-        jMenu1.add(jMenuItem8);
+        MenuProducto.setText("Nuevo Cliente");
+        MenuProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuProductoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MenuProducto);
 
-        jMenuItem9.setText("NuevoProducto");
-        jMenu1.add(jMenuItem9);
+        MenuEmpleado.setText("NuevoProducto");
+        MenuEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuEmpleadoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MenuEmpleado);
 
-        jMenuItem13.setText("Nuevo Empleado");
-        jMenu1.add(jMenuItem13);
+        MenuTienda.setText("Nuevo Empleado");
+        MenuTienda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuTiendaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MenuTienda);
 
-        jMenuItem11.setText("Nueva Tienda");
-        jMenu1.add(jMenuItem11);
+        MenuTiempo.setText("Nueva Tienda");
+        MenuTiempo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuTiempoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MenuTiempo);
 
-        jMenuItem12.setText("Tiempo Entre Tiendas");
-        jMenu1.add(jMenuItem12);
+        MenuCliente.setText("Tiempo Entre Tiendas");
+        MenuCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuClienteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MenuCliente);
 
         jMenuBar1.add(jMenu1);
 
@@ -85,11 +119,15 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(principal)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(principal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(principal)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(principal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -99,19 +137,60 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void MenuProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuProductoActionPerformed
+        NuevoCliente cliente = new NuevoCliente();
+        principal.add(cliente);
+        cliente.setVisible(true);
+    }//GEN-LAST:event_MenuProductoActionPerformed
+
+    private void MenuEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuEmpleadoActionPerformed
+        NuevoProducto NuevoProducto = new NuevoProducto();
+        AgregarProductoTienda producto = new AgregarProductoTienda(NuevoProducto, CodigoTienda);
+        principal.add(producto);
+        producto.setVisible(true);
+        principal.add(NuevoProducto);
+        NuevoProducto.setVisible(false);
+    }//GEN-LAST:event_MenuEmpleadoActionPerformed
+
+    private void MenuTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuTiendaActionPerformed
+        NuevoVendedor vendedor = new NuevoVendedor();
+        principal.add(vendedor);
+        vendedor.setVisible(true);
+    }//GEN-LAST:event_MenuTiendaActionPerformed
+
+    private void MenuTiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuTiempoActionPerformed
+        NuevaTienda tienda = new NuevaTienda();
+        principal.add(tienda);
+        tienda.setVisible(true);
+    }//GEN-LAST:event_MenuTiempoActionPerformed
+
+    private void MenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuClienteActionPerformed
+        NuevoTiempo tiempo = new NuevoTiempo(CodigoTienda);
+        principal.add(tiempo);
+        tiempo.setVisible(true);
+    }//GEN-LAST:event_MenuClienteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MenuCliente;
+    private javax.swing.JMenuItem MenuEmpleado;
+    private javax.swing.JMenuItem MenuProducto;
+    private javax.swing.JMenuItem MenuTiempo;
+    private javax.swing.JMenuItem MenuTienda;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JDesktopPane principal;
     // End of variables declaration//GEN-END:variables
+
+    public String getCodigoTienda(){
+        return CodigoTienda;
+    }
+
+    public void Mostrar(NuevoProducto NuevoProducto) {
+        NuevoProducto.setVisible(true);
+    }
 }

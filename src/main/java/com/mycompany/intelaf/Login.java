@@ -3,6 +3,7 @@ package com.mycompany.intelaf;
 import com.intelaf.gui.empleado.Menu;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
@@ -48,8 +49,8 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuario");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, -1, -1));
-        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 195, 39));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, -1, -1));
+        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 195, 39));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -69,8 +70,14 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadoActionPerformed
-        Menu m = new Menu();
-        m.setVisible(true);
+        if (txtUsuario.getText().equals(""))
+            JOptionPane.showMessageDialog(null, "Porfavor escriba un usuario");
+        else {
+            String usuario = txtUsuario.getText();
+            SeleccionTienda tienda = new SeleccionTienda(usuario);
+            this.setVisible(false);
+            tienda.setVisible(true);
+        }
     }//GEN-LAST:event_btnEmpleadoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

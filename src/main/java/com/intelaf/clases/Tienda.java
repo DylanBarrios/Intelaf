@@ -19,6 +19,9 @@ public class Tienda {
         this.Horario = Horario;
     }
 
+    public Tienda() {
+    }
+
     public String getCodigoTienda() {
         return CodigoTienda;
     }

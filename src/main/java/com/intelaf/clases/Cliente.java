@@ -5,18 +5,18 @@ package com.intelaf.clases;
  * @author dylan
  */
 public class Cliente extends Persona{
-    private int CreditoCompra;
+    private double CreditoCompra;
 
-    public Cliente(int CreditoCompra, String Nombre, String Telefono, String DPI, String NIT, String Direccion, String Correo) {
+    public Cliente(double CreditoCompra, String Nombre, String Telefono, String DPI, String NIT, String Direccion, String Correo) {
         super(Nombre, Telefono, DPI, NIT, Direccion, Correo);
         this.CreditoCompra = CreditoCompra;
     }
 
-    public int getCreditoCompra() {
+    public double getCreditoCompra() {
         return CreditoCompra;
     }
 
-    public void setCreditoCompra(int CreditoCompra) {
+    public void setCreditoCompra(double CreditoCompra) {
         this.CreditoCompra = CreditoCompra;
     }
     

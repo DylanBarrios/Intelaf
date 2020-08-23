@@ -84,6 +84,7 @@ public class NuevoProducto extends javax.swing.JInternalFrame {
         getContentPane().add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 180, 30));
         getContentPane().add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 180, 30));
 
+        jButton1.setBackground(new java.awt.Color(51, 255, 0));
         jButton1.setText("Registrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,7 +200,17 @@ public class NuevoProducto extends javax.swing.JInternalFrame {
             }
             Producto producto = new Producto(CodigoProducto, Garantia, Nombre, Fabricante, Descripcion, Double.parseDouble(Precio));
             NuevoProductoMysql productoMysql = new NuevoProductoMysql(producto);
+            Limpiar();
         }
+    }
+    
+    private void Limpiar(){
+        txtCodigo.setText("");
+        txtGarantia.setText("");
+        txtNombre.setText("");
+        txtFabricante.setText("");
+        txtDescripcion.setText("");
+        txtPrecio.setText("");
     }
 
 }

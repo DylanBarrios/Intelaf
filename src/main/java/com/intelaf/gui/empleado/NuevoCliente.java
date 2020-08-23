@@ -85,6 +85,7 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
         getContentPane().add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 150, 25));
         getContentPane().add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 255, 150, 25));
 
+        jButton1.setBackground(new java.awt.Color(51, 255, 0));
         jButton1.setText("Registrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,12 +189,22 @@ public class NuevoCliente extends javax.swing.JInternalFrame {
         String NIT = txtNIT.getText();
         String Direccion = txtDireccion.getText();
         String Correo = txtCorreo.getText();
-        if (Nombre.equals("") || NIT.equals("") || Telefono.equals("")) {
+        if (Nombre.equals("") || NIT.equals("") || Telefono.equals("")) 
             JOptionPane.showMessageDialog(null, "Por favor rellene los campos obligatorios");
-        } else {
+         else {
             Cliente cliente = new Cliente(CreditoCompra, Nombre, Telefono, DPI, NIT, Direccion, Correo);
             NuevoClienteMysql clienteMysql = new NuevoClienteMysql(cliente);
+            Limpiar();
         }
+    }
+    
+    private void Limpiar(){
+        txtNombre.setText("");
+        txtTelefono.setText("");
+        txtDPI.setText("");
+        txtNIT.setText("");
+        txtDireccion.setText("");
+        txtCorreo.setText("");
     }
 
 }

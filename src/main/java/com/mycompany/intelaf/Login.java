@@ -1,6 +1,7 @@
 package com.mycompany.intelaf;
 
 import com.intelaf.gui.empleado.Menu;
+import com.intelaf.mysql.VerificarUsuario;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -74,9 +75,14 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Porfavor escriba un usuario");
         else {
             String usuario = txtUsuario.getText();
+            VerificarUsuario usuarioMysql = new VerificarUsuario();
+            if(usuarioMysql.VerificarVendedor(usuario)){
             SeleccionTienda tienda = new SeleccionTienda(usuario);
             this.setVisible(false);
             tienda.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(null, "El Usuario No Existe");
+            }
         }
     }//GEN-LAST:event_btnEmpleadoActionPerformed
 

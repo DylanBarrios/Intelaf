@@ -61,6 +61,7 @@ public class NuevoTiempo extends javax.swing.JInternalFrame {
         jLabel1.setText("dias");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(51, 255, 0));
         jButton1.setText("Registrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,6 +138,8 @@ public class NuevoTiempo extends javax.swing.JInternalFrame {
             int TiempoET = Integer.parseInt(TiempoETstring);
             TiempoEntreTiendas tet = new TiempoEntreTiendas(CodigoTET, CodTiendaOrigen, CodTiendaDestino, TiempoET);
             NuevoTET_Mysql tetMysql = new NuevoTET_Mysql(tet);
+            txtTiempo.setText("");
         }
     }
+    
 }

@@ -5,6 +5,7 @@ import com.intelaf.mysql.CantidadExistenciaProductos;
 import com.intelaf.mysql.Conexion;
 import com.intelaf.mysql.ExtraerCreditoMysql;
 import com.intelaf.mysql.NuevaVentaMysql;
+import com.intelaf.mysql.NuevoCreditoMysql;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -61,6 +62,7 @@ public class NuevaVenta extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         Wallpaper = new javax.swing.JLabel();
 
+        setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TableAgregado.setModel(new javax.swing.table.DefaultTableModel(
@@ -299,8 +301,8 @@ public class NuevaVenta extends javax.swing.JInternalFrame {
             PreparedStatement pst = connection.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                System.out.println(rs.getString("Precio"));
                 txtPrecio.setText(rs.getString("Precio"));
+                txtCantidad.setText("");
             }
         } catch (SQLException e) {
             System.out.println("Error al dar click en combo " + e);
@@ -310,15 +312,20 @@ public class NuevaVenta extends javax.swing.JInternalFrame {
     private void agregarVentaTabla() {
         Double SubTotal = Double.parseDouble(txtSubTotal.getText());
         String Producto = String.valueOf(cbxProducto.getSelectedItem());
-        int Cantidad = Integer.parseInt(txtCantidad.getText());
-        String[] CodigoProducto = Producto.split(":");
-        CantidadExistenciaProductos existencia = new CantidadExistenciaProductos();
-        int CantidaExistente = existencia.CantidadExistenciaProductos(CodigoProducto[1], CodigoTienda);
-        if (CantidaExistente >= Cantidad) {
-            Object datos[] = {Producto, Cantidad, SubTotal};
-            modelo.addRow(datos);
+        if (txtCantidad.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor escriba una cantidad");
         } else {
-            JOptionPane.showMessageDialog(null, "Solo cuenta con " + CantidaExistente + " en bodega");
+            int Cantidad = Integer.parseInt(txtCantidad.getText());
+            String[] CodigoProducto = Producto.split(":");
+            CantidadExistenciaProductos existencia = new CantidadExistenciaProductos();
+            int CantidaExistente = existencia.CantidadExistenciaProductos(CodigoProducto[1], CodigoTienda);
+            if (CantidaExistente >= Cantidad) {
+                Object datos[] = {Producto, Cantidad, SubTotal};
+                modelo.addRow(datos);
+                txtCantidad.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Solo cuenta con " + CantidaExistente + " en bodega");
+            }
         }
     }
 
@@ -339,33 +346,94 @@ public class NuevaVenta extends javax.swing.JInternalFrame {
 
     private void vender() {
         int filas = modelo.getRowCount();
-        String NIT = txtNIT.getText();
-        ExtraerCreditoMysql credito = new ExtraerCreditoMysql();
-        if (credito.VerificarNIT(NIT)) {
-            for (int i = 0; i < filas; i++) {
-                String producto = (String) modelo.getValueAt(i, 0);
-                String[] CodigoProducto = producto.split(":");
-                int Cantidad = Integer.parseInt(modelo.getValueAt(i, 1).toString());
-                Double Total = Double.parseDouble(modelo.getValueAt(i, 2).toString());
-                String CodigoVendedor = CodigoUsuario;
-                String FechaRealizada = txtFecha.getText();
-                int CodigoVenta = 0;
-                double PagoCredito = Double.parseDouble(txtCredito.getText());
-                double PagoEfectivo = Double.parseDouble(txtEfectivo.getText());
-                Venta venta = new Venta(CodigoProducto[1], CodigoVendedor, FechaRealizada, NIT, CodigoVenta, Cantidad, Total, PagoCredito, PagoEfectivo);
-                System.out.println(venta.getCodigoProducto());
-                System.out.println(venta.getCodigoVendedor());
-                System.out.println(venta.getFechaRealizada());
-                System.out.println(venta.getNIT());
-                System.out.println(venta.getCodigoVenta());
-                System.out.println(venta.getCantidad());
-                System.out.println(venta.getTotal());
-                System.out.println(venta.getPagoCredito());
-                System.out.println(venta.getPagoEfectivo());
-                NuevaVentaMysql ventaMysql = new NuevaVentaMysql(venta);
+        if (txtNIT.getText().equals("") || txtFecha.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor llene todos los campos");
+        } else {
+            String NIT = txtNIT.getText();
+            ExtraerCreditoMysql credito = new ExtraerCreditoMysql();
+            if (credito.Credito(NIT)) {
+                if (Pagar(credito.getCredito())) {
+                    for (int i = 0; i < filas; i++) {
+                        String producto = (String) modelo.getValueAt(i, 0);
+                        String[] CodigoProducto = producto.split(":");
+                        int Cantidad = Integer.parseInt(modelo.getValueAt(i, 1).toString());
+                        Double Total = Double.parseDouble(modelo.getValueAt(i, 2).toString());
+                        String CodigoVendedor = CodigoUsuario;
+                        String FechaRealizada = txtFecha.getText();
+                        int CodigoVenta = 0;
+                        Venta venta = new Venta(CodigoProducto[1], CodigoVendedor, FechaRealizada, NIT, CodigoVenta, Cantidad, Total);
+                        NuevaVentaMysql ventaMysql = new NuevaVentaMysql(venta, CodigoTienda);
+                    }
+                    Limpiar();
+                }
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "El cliente no esta registrado, verifiquelo o agreguelo");
         }
+    }
+
+    private void Limpiar() {
+        txtNIT.setText("");
+        txtFecha.setText("");
+        txtEfectivo.setText("");
+        txtCredito.setText("");
+        int filas = modelo.getRowCount();
+        for (int i = 0; i < filas; i++) {
+            modelo.removeRow(0);
+        }
+
+    }
+
+    private boolean Pagar(Double CreditoDB) {
+        Double Total = Double.parseDouble(txtTotal.getText());
+        Double Efectivo = 0.0;
+        Double Credito = 0.0;
+
+        if (txtEfectivo.getText().equals("") && txtCredito.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por Favor Escriba un metodo de pago");
+        } else {
+
+            if (!txtCredito.getText().equals("")) {
+                Credito = Double.parseDouble(txtCredito.getText());
+            }
+            if (!txtEfectivo.getText().equals("")) {
+                Efectivo = Double.parseDouble(txtEfectivo.getText());
+            }
+
+            if (Credito == 0) {
+                if (PagoEnEfectivo(Efectivo, Total)) {
+                    return true;
+                }
+            } else {
+                if (PagoConCredito(Efectivo, Credito, CreditoDB, Total)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean PagoConCredito(Double Efectivo, Double Credito, Double CreditoDB, Double Total) {
+        if ((Efectivo + Credito) >= Total) {
+            if (Credito <= CreditoDB) {
+                Double NuevoCredito = CreditoDB - Credito;
+                NuevoCreditoMysql CreditoMysql = new NuevoCreditoMysql(NuevoCredito, txtNIT.getText());
+                JOptionPane.showMessageDialog(null, "Pago realizado con exito");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "El credito no es suficientes, solo cuenta con: Q " + CreditoDB);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "El pago no es suficientes");
+        }
+        return false;
+    }
+
+    private boolean PagoEnEfectivo(Double Efectivo, Double Total) {
+        if (Efectivo >= Total) {
+            JOptionPane.showMessageDialog(null, "Pago realizado, el vuelto es de: Q " + (Efectivo - Total));
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "El pago no es suficientes");
+        }
+        return false;
     }
 }

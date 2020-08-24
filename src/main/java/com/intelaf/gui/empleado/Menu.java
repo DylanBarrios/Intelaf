@@ -153,6 +153,8 @@ public class Menu extends javax.swing.JFrame {
     private void MenuEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuEmpleadoActionPerformed
         NuevoProducto NuevoProducto = new NuevoProducto();
         AgregarProductoTienda producto = new AgregarProductoTienda(NuevoProducto, CodigoTienda);
+        principal.removeAll();
+        principal.repaint();
         principal.add(producto);
         producto.setVisible(true);
         principal.add(NuevoProducto);

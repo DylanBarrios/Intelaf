@@ -14,7 +14,7 @@ public class ExtraerCreditoMysql {
     
     Double credito = 0.0;
     
-    public boolean VerificarNIT(String NIT){
+    public boolean Credito(String NIT){
         Conexion conexion = new Conexion();
 
         try (Connection connection = conexion.getConnection()) {
@@ -24,8 +24,11 @@ public class ExtraerCreditoMysql {
             if (rs.next()) {
                 credito = rs.getDouble("Credito");
                 return true;
-            }
-        } catch (SQLException e) {System.out.println("Error al obtener cantidad de credito "+e);
+            }else
+                JOptionPane.showMessageDialog(null, "El cliente no se encuentra en la base de datos");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en la base de datos, contacte con el programador");
+            System.out.println("Error al obtener cantidad de credito "+e);
         }
         
         return false;

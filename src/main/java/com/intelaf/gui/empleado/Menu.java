@@ -194,7 +194,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JDesktopPane principal;
+    public static javax.swing.JDesktopPane principal;
     // End of variables declaration//GEN-END:variables
 
     public String getCodigoTienda(){

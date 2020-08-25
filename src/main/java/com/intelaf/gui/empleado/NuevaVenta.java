@@ -185,6 +185,11 @@ public class NuevaVenta extends javax.swing.JInternalFrame {
         jButton3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 0, 0));
         jButton3.setText("PEDIDO ENTRE TIENDAS");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 530, 570, 50));
 
         Wallpaper.setBackground(new java.awt.Color(255, 255, 204));
@@ -246,6 +251,13 @@ public class NuevaVenta extends javax.swing.JInternalFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtCreditoKeyTyped
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        NuevoPedido pedido = new NuevoPedido(CodigoUsuario, CodigoTienda);
+        Menu.principal.add(pedido);
+        pedido.toFront();
+        pedido.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

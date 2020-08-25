@@ -18,7 +18,7 @@ public class AgregarProductoTienda extends javax.swing.JInternalFrame {
 
     NuevoProducto Nuevo;
     String CodigoTienda;
-    
+
     public AgregarProductoTienda(NuevoProducto Nuevo, String codigoTienda) {
         initComponents();
         this.Nuevo = Nuevo;
@@ -39,7 +39,6 @@ public class AgregarProductoTienda extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         cbxProductos = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        LabelTienda = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -47,7 +46,14 @@ public class AgregarProductoTienda extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Cantidad");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 99, -1, -1));
-        getContentPane().add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 95, 177, -1));
+
+        txtCantidad.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 90, 40));
 
         jLabel2.setText("Producto");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 63, -1, -1));
@@ -69,13 +75,14 @@ public class AgregarProductoTienda extends javax.swing.JInternalFrame {
         jLabel3.setText("Si el producto no aparece ");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 130, 200, -1));
 
-        jButton2.setText("Agregar");
+        jButton2.setBackground(new java.awt.Color(51, 255, 0));
+        jButton2.setText("AGREGAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 52, 121, 66));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 121, 50));
 
         cbxProductos.setEditable(true);
         getContentPane().add(cbxProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 58, 177, -1));
@@ -84,9 +91,6 @@ public class AgregarProductoTienda extends javax.swing.JInternalFrame {
         jLabel5.setForeground(new java.awt.Color(0, 0, 255));
         jLabel5.setText("AGREGAR PRODUCTO A LA TIENDA");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 6, -1, -1));
-
-        LabelTienda.setText("jLabel6");
-        getContentPane().add(LabelTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 31, 132, 21));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 204));
         jLabel6.setOpaque(true);
@@ -98,7 +102,6 @@ public class AgregarProductoTienda extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Menu menu = new Menu();
         menu.Mostrar(Nuevo);
-        LabelTienda.setText(menu.getCodigoTienda());
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -109,14 +112,22 @@ public class AgregarProductoTienda extends javax.swing.JInternalFrame {
             String CodigoProducto = codigo.ExtraerCodigoProducto((String) cbxProductos.getSelectedItem());
             TenerProductoTienda tener = new TenerProductoTienda(0, Cantidad, CodigoProducto, CodigoTienda);
             AgregarProductoTiendaMysql tenerMysql = new AgregarProductoTiendaMysql(tener);
-        }else{
+            txtCantidad.setText("");
+        } else {
             JOptionPane.showMessageDialog(null, "Por favor escriba una cantidad");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void txtCantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyReleased
+        char tipeado = evt.getKeyChar();
+        if (Character.isLetter(tipeado)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCantidadKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel LabelTienda;
     private javax.swing.JComboBox<String> cbxProductos;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -136,7 +147,7 @@ public class AgregarProductoTienda extends javax.swing.JInternalFrame {
             String sql = "Select Nombre from Producto";
             PreparedStatement pst = connection.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 String producto = rs.getString("Nombre");
                 cbxProductos.addItem(producto);
             }

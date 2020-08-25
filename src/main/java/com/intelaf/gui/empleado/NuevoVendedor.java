@@ -90,6 +90,7 @@ public class NuevoVendedor extends javax.swing.JInternalFrame {
         getContentPane().add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 235, 150, 25));
         getContentPane().add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 150, 25));
 
+        jButton1.setBackground(new java.awt.Color(51, 255, 0));
         jButton1.setText("Registrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,6 +179,7 @@ public class NuevoVendedor extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         CapturarDatos();
+        Limpiar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -224,6 +226,16 @@ public class NuevoVendedor extends javax.swing.JInternalFrame {
             Vendedor vendedor = new Vendedor(Codigo, Nombre, Telefono, DPI, NIT, Direccion, Correo);
             NuevoVendedorMysql vendedorMysql = new NuevoVendedorMysql(vendedor);
         }
+    }
+    
+    private void Limpiar(){
+        txtCodigo.setText("");
+        txtNombre.setText("");
+        txtTelefono.setText("");
+        txtDPI.setText("");
+        txtNIT.setText("");
+        txtDireccion.setText("");
+        txtCorreo.setText("");
     }
 
 }

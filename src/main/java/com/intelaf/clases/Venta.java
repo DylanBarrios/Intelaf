@@ -8,9 +8,9 @@ public class Venta {
     private String CodigoProducto, CodigoVendedor;
     private String FechaRealizada, NIT;
     private int CodigoVenta, Cantidad;
-    private double Total, PagoCredito, PagoEfectivo;
+    private double Total;
 
-    public Venta(String CodigoProducto, String CodigoVendedor, String FechaRealizada, String NIT, int CodigoVenta, int Cantidad, double Total, double PagoCredito, double PagoEfectivo) {
+    public Venta(String CodigoProducto, String CodigoVendedor, String FechaRealizada, String NIT, int CodigoVenta, int Cantidad, double Total) {
         this.CodigoProducto = CodigoProducto;
         this.CodigoVendedor = CodigoVendedor;
         this.FechaRealizada = FechaRealizada;
@@ -18,8 +18,6 @@ public class Venta {
         this.CodigoVenta = CodigoVenta;
         this.Cantidad = Cantidad;
         this.Total = Total;
-        this.PagoCredito = PagoCredito;
-        this.PagoEfectivo = PagoEfectivo;
     }
 
     public String getCodigoProducto() {
@@ -78,21 +76,5 @@ public class Venta {
         this.Total = Total;
     }
 
-    public double getPagoCredito() {
-        return PagoCredito;
-    }
-
-    public void setPagoCredito(double PagoCredito) {
-        this.PagoCredito = PagoCredito;
-    }
-
-    public double getPagoEfectivo() {
-        return PagoEfectivo;
-    }
-
-    public void setPagoEfectivo(double PagoEfectivo) {
-        this.PagoEfectivo = PagoEfectivo;
-    }
-            
     
 }

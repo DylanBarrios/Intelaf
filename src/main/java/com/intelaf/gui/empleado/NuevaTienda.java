@@ -74,6 +74,7 @@ public class NuevaTienda extends javax.swing.JInternalFrame {
         getContentPane().add(txtHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 240, 29));
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 240, 29));
 
+        jButton1.setBackground(new java.awt.Color(51, 255, 0));
         jButton1.setText("Registrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,7 +217,18 @@ public class NuevaTienda extends javax.swing.JInternalFrame {
         } else {
             Tienda tienda = new Tienda(CodigoTienda, Nombre, Direccion, Telefono1, Telefono2, Correo, Horario);
             NuevaTiendaMysql tiendaMysql = new NuevaTiendaMysql(tienda);
+            Limpiar();
         }
+    }
+    
+    private void Limpiar(){
+        txtNombre.setText("");
+        txtDireccion.setText("");
+        txtCodigo.setText("");
+        txtTelefono1.setText("");
+        txtTelefono2.setText("");
+        txtCorreo.setText("");
+        txtHorario.setText("");
     }
 
 }

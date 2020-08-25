@@ -8,9 +8,9 @@ public class Pedido {
     private String CodigoPedido, FechaSalida, CodigoVendedor, NIT;
     private int CodigoTet;
     private double Anticipo;
-    private boolean Retrasado, Entregado;
+    private boolean Retrasado, Entregado, Recibido;
 
-    public Pedido(String CodigoPedido, String FechaSalida, String CodigoVendedor, String NIT, int CodigoTet, double Anticipo, boolean Retrasado, boolean Entregado) {
+    public Pedido(String CodigoPedido, String FechaSalida, String CodigoVendedor, String NIT, int CodigoTet, double Anticipo, boolean Retrasado, boolean Entregado, boolean Recibido) {
         this.CodigoPedido = CodigoPedido;
         this.FechaSalida = FechaSalida;
         this.CodigoVendedor = CodigoVendedor;
@@ -19,6 +19,7 @@ public class Pedido {
         this.Anticipo = Anticipo;
         this.Retrasado = Retrasado;
         this.Entregado = Entregado;
+        this.Recibido = Recibido;
     }
 
     public String getCodigoPedido() {
@@ -83,6 +84,14 @@ public class Pedido {
 
     public void setEntregado(boolean Entregado) {
         this.Entregado = Entregado;
+    }
+
+    public boolean isRecibido() {
+        return Recibido;
+    }
+
+    public void setRecibido(boolean Recibido) {
+        this.Recibido = Recibido;
     }
     
     

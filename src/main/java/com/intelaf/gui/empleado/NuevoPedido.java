@@ -414,7 +414,7 @@ public class NuevoPedido extends javax.swing.JInternalFrame {
                     int CodigoET = extraerTiempoTET.getCodigoTET();
                     String FechaRealizada = txtFecha.getText();
                     String CodigoVendedor = CodigoUsuario;
-                    Pedido pedido = new Pedido(CodigoPedido, FechaRealizada, CodigoVendedor, NIT, CodigoET, Anticipo, false, false);
+                    Pedido pedido = new Pedido(CodigoPedido, FechaRealizada, CodigoVendedor, NIT, CodigoET, Anticipo, false, false, false);
                     NuevoPedidoMysql pedidoMysql = new NuevoPedidoMysql();
                     if (pedidoMysql.RealizarPedido(pedido)) {
                         txtTotal.setText("");

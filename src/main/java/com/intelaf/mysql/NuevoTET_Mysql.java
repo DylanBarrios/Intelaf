@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 public class NuevoTET_Mysql {
 
     public NuevoTET_Mysql(TiempoEntreTiendas tet) {
-        if (VerificarCliente(tet.getCodTiendaOrigen(), tet.getCodTiendaDestino())) {
+        if (VerificarTiempo(tet.getCodTiendaOrigen(), tet.getCodTiendaDestino())) {
             JOptionPane.showMessageDialog(null, "Ya existe un tiempo entre esas tiendas");
         } else {
             Conexion conexion = new Conexion();
@@ -28,7 +28,15 @@ public class NuevoTET_Mysql {
                 pst.setString(3, tet.getCodTiendaDestino());
                 pst.setInt(4, tet.getTiempoET());
                 pst.executeUpdate();
+                pst.setInt(1, 0);
+                pst.setString(2, tet.getCodTiendaDestino());
+                pst.setString(3, tet.getCodTiendaOrigen());
+                pst.setInt(4, tet.getTiempoET());
+                pst.executeUpdate();
+                
                 JOptionPane.showMessageDialog(null, "Registro Exitoso");
+                
+                
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error en la base de datos, contacte con el programador");
                 System.err.println("Error al agregar Nueva Tienda: " + e);
@@ -36,7 +44,7 @@ public class NuevoTET_Mysql {
         }
     }
 
-    public boolean VerificarCliente(String Origen, String Destino) {
+    public boolean VerificarTiempo(String Origen, String Destino) {
         Conexion conexion = new Conexion();
         String sql = "SELECT CodTiendaOrigen FROM TET WHERE CodTiendaDestino = '" + Destino + "' AND CodTiendaOrigen ='" + Origen + "'";
 
@@ -47,7 +55,7 @@ public class NuevoTET_Mysql {
                 return true;
             }
         } catch (SQLException e) {
-            System.err.println("Error al verificar NIT en nuevo cliente: " + e);
+            System.err.println("Error al verificar Codigo del Tiempo entre tiendas: " + e);
         }
         return false;
     }

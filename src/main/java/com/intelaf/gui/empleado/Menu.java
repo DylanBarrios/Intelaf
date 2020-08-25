@@ -100,7 +100,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Venta");
+        jMenu2.setText("Ventas");
 
         jMenuItem6.setText("Nueva Venta");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +110,12 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem6);
 
-        jMenuItem7.setText("Nuevo Pedido");
+        jMenuItem7.setText("Recibir Pedido");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem7);
 
         jMenuBar1.add(jMenu2);
@@ -178,6 +183,12 @@ public class Menu extends javax.swing.JFrame {
         principal.add(tiempo);
         tiempo.setVisible(true);
     }//GEN-LAST:event_MenuClienteActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        RecibirPedido recibir = new RecibirPedido(CodigoTienda);
+        principal.add(recibir);
+        recibir.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuCliente;

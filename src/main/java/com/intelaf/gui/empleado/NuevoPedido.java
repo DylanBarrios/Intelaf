@@ -425,7 +425,7 @@ public class NuevoPedido extends javax.swing.JInternalFrame {
                             int Cantidad = Integer.parseInt(modelo.getValueAt(i, 1).toString());
                             Double Total = Double.parseDouble(modelo.getValueAt(i, 2).toString());
                             PertenecerProductoPedido pertenecer = new PertenecerProductoPedido(0, CodigoProducto[1], CodigoPedido, Total, Cantidad);
-                            AgregarProductoPedidoMysql productoMysql = new AgregarProductoPedidoMysql(pertenecer);
+                            AgregarProductoPedidoMysql productoMysql = new AgregarProductoPedidoMysql(pertenecer,TiendaSeparada[1]);
                         }
                         Limpiar();
                     }

@@ -208,6 +208,11 @@ public class Menu extends javax.swing.JFrame {
         jMenu3.add(jMenuItem11);
 
         jMenuItem12.setText("Productos mas vendidos");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem12);
 
         jMenuItem14.setText("Productos que no buscan");
@@ -380,6 +385,12 @@ public class Menu extends javax.swing.JFrame {
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         
     }//GEN-LAST:event_jMenuItem21ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        ProductoMasVendio masVendido = new ProductoMasVendio();
+        principal.add(masVendido);
+        masVendido.setVisible(true);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuCliente;

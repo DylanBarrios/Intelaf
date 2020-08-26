@@ -35,6 +35,7 @@ com/intelaf/gui/reportes/PedidosPorCliente$2.class
 com/intelaf/gui/empleado/NuevaVenta$7.class
 com/intelaf/mysql/ActualizarVendedorMysql.class
 com/intelaf/gui/empleado/Menu$5.class
+com/intelaf/gui/empleado/Menu$20.class
 com/intelaf/mysql/RecibirMysql.class
 com/intelaf/clases/TenerProductoTienda.class
 com/intelaf/gui/editar/ListadoProducto.class
@@ -77,6 +78,7 @@ com/intelaf/mysql/NuevoClienteMysql.class
 com/intelaf/mysql/NuevaVentaMysql.class
 com/intelaf/clases/PertenecerProductoPedido.class
 com/intelaf/gui/editar/ListadoTienda.class
+com/intelaf/gui/reportes/ProductoMasVendio$1.class
 com/intelaf/gui/empleado/NuevaVenta.class
 com/intelaf/gui/empleado/Menu$12.class
 com/intelaf/gui/empleado/NuevaVenta$2.class
@@ -154,6 +156,7 @@ com/intelaf/gui/editar/EditarCliente$3.class
 com/intelaf/gui/editar/ListadoProducto$1.class
 com/intelaf/gui/empleado/Menu$8.class
 com/intelaf/gui/empleado/NuevoVendedor$1.class
+com/intelaf/gui/reportes/ProductoMasVendio.class
 com/intelaf/gui/empleado/Menu$10.class
 com/intelaf/mysql/ExtraerCodigoProducto.class
 com/intelaf/gui/reportes/PedidosPorCliente.class

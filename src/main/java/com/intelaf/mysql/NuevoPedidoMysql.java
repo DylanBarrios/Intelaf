@@ -12,7 +12,7 @@ public class NuevoPedidoMysql {
 
     public boolean RealizarPedido(Pedido pedido){
         Conexion conexion = new Conexion();
-        String sql = "INSERT INTO Pedido VALUES(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Pedido VALUES(?,?,?,?,?,?,?,?,?)";
         if (VerificarPedido(pedido.getCodigoPedido())) {
             JOptionPane.showMessageDialog(null, "El codigo de pedido ya esta registrado");
         } else {
@@ -26,6 +26,7 @@ public class NuevoPedidoMysql {
                 pst.setDouble(6, pedido.getAnticipo());
                 pst.setBoolean(7, pedido.isRetrasado());
                 pst.setBoolean(8, pedido.isEntregado());
+                pst.setBoolean(8, pedido.isRecibido());
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Pedido registrado con exito");
                 return true;

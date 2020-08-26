@@ -1,10 +1,13 @@
 package com.intelaf.gui.reportes;
 
 import com.intelaf.mysql.Conexion;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,8 +18,7 @@ public class PedidosPorLlegar extends javax.swing.JInternalFrame {
 
     String CodigoTienda;
     DefaultTableModel modelo = null;
-        
-    
+
     public PedidosPorLlegar(String CodigoTienda) {
         this.CodigoTienda = CodigoTienda;
         initComponents();
@@ -30,8 +32,10 @@ public class PedidosPorLlegar extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePedidos = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setClosable(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablePedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -46,27 +50,31 @@ public class PedidosPorLlegar extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tablePedidos);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 613, 403));
+
+        jButton1.setText("Exportar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(484, 426, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Exportar e = new Exportar();
+        try {
+            e.generar(modelo, "Pedidos Por Llegar");
+        } catch (IOException ex) {
+            Logger.getLogger(PedidosPorLlegar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablePedidos;
     // End of variables declaration//GEN-END:variables
@@ -84,14 +92,13 @@ public class PedidosPorLlegar extends javax.swing.JInternalFrame {
             }
         } catch (SQLException e) {
             System.out.println("Erro al cargar pedidos en recibir " + e);
-        }      
-        
+        }
 
     }
 
     private void AgregarPedidos(int CodigoTET) {
         Conexion conexion = new Conexion();
-        String sql = "SELECT * from Pedido WHERE Recibido = 0 AND CodigoTET = "+CodigoTET;
+        String sql = "SELECT * from Pedido WHERE Recibido = 0 AND CodigoTET = " + CodigoTET;
 
         try (Connection connection = conexion.getConnection()) {
             PreparedStatement pst = connection.prepareStatement(sql);
@@ -107,12 +114,11 @@ public class PedidosPorLlegar extends javax.swing.JInternalFrame {
             System.out.println("Erro al cargar pedidos en recibir " + e);
         }
     }
-    
-     private void Titulos() {
+
+    private void Titulos() {
         String[] Titulos = {"Codigo Pedido", "Fecha Salida", "NIT"};
         modelo = new DefaultTableModel(null, Titulos);
         tablePedidos.setModel(modelo);
     }
-
 
 }

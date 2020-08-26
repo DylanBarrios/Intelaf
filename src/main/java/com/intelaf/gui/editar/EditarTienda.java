@@ -1,23 +1,21 @@
-package com.intelaf.gui.empleado;
+package com.intelaf.gui.editar;
 
-import java.awt.Image;
-import javax.swing.ImageIcon;
 import com.intelaf.clases.Tienda;
-import com.intelaf.mysql.Conexion;
-import com.intelaf.mysql.NuevaTiendaMysql;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import com.intelaf.mysql.ActualizarTiendaMysql;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author dylan
  */
-public class NuevaTienda extends javax.swing.JInternalFrame {
+public class EditarTienda extends javax.swing.JInternalFrame {
 
-    public NuevaTienda() {
+    Tienda tienda;
+    
+    public EditarTienda(Tienda tienda) {
+        this.tienda = tienda;
         initComponents();
+        SetTienda();
     }
 
     @SuppressWarnings("unchecked")
@@ -75,7 +73,7 @@ public class NuevaTienda extends javax.swing.JInternalFrame {
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 240, 29));
 
         jButton1.setBackground(new java.awt.Color(51, 255, 0));
-        jButton1.setText("Registrar");
+        jButton1.setText("Actualizar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -86,6 +84,7 @@ public class NuevaTienda extends javax.swing.JInternalFrame {
         jLabel1.setText("Codigo");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
+        txtCodigo.setEditable(false);
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyTyped(evt);
@@ -138,11 +137,11 @@ public class NuevaTienda extends javax.swing.JInternalFrame {
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 51, 51));
         jLabel9.setText("son obligatorios");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, 90, 20));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, -1, 20));
 
         jLabel15.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 102, 255));
-        jLabel15.setText("NUEVA TIENDA");
+        jLabel15.setText("EDITAR TIENDA");
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 320, 50));
 
         Wallpaper.setBackground(new java.awt.Color(255, 255, 204));
@@ -216,19 +215,21 @@ public class NuevaTienda extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Por favor rellene los campos obligatorios");
         } else {
             Tienda tienda = new Tienda(CodigoTienda, Nombre, Direccion, Telefono1, Telefono2, Correo, Horario);
-            NuevaTiendaMysql tiendaMysql = new NuevaTiendaMysql(tienda);
-            Limpiar();
+            ActualizarTiendaMysql tiendaMysql = new ActualizarTiendaMysql();
+            if(tiendaMysql.ActualizarTiendaMysql(tienda))
+                this.setVisible(false);
         }
     }
     
-    private void Limpiar(){
-        txtNombre.setText("");
-        txtDireccion.setText("");
-        txtCodigo.setText("");
-        txtTelefono1.setText("");
-        txtTelefono2.setText("");
-        txtCorreo.setText("");
-        txtHorario.setText("");
+    
+    private void SetTienda() {
+        txtNombre.setText(tienda.getNombre());
+        txtDireccion.setText(tienda.getDireccion());
+        txtCodigo.setText(tienda.getCodigoTienda());
+        txtTelefono1.setText(tienda.getTelefono1());
+        txtTelefono2.setText(tienda.getTelefono2());
+        txtCorreo.setText(tienda.getCorreo());
+        txtHorario.setText(tienda.getHorario());
     }
 
 }

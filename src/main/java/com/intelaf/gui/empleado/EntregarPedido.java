@@ -246,7 +246,8 @@ public class EntregarPedido extends javax.swing.JInternalFrame {
             String NIT = txtNIT.getText();
             ExtraerCreditoMysql credito = new ExtraerCreditoMysql();
             if (credito.Credito(NIT)) {
-                if (Pagar(credito.getCredito())) {
+                Double CreditoDB = credito.getCredito();
+                if (Pagar(CreditoDB)) {
                     for (int i = 0; i < filas; i++) {
                         String producto = (String) modelo.getValueAt(i, 0);
                         int Cantidad = Integer.parseInt(modelo.getValueAt(i, 1).toString());
@@ -257,6 +258,9 @@ public class EntregarPedido extends javax.swing.JInternalFrame {
                         Venta venta = new Venta(producto, CodigoVendedor, FechaRealizada, NIT, CodigoVenta, Cantidad, Total);
                         NuevaVentaPedidoMysql ventaMysql = new NuevaVentaPedidoMysql(venta);
                         Entregar(cbxPedido.getSelectedItem().toString());
+                        if (verificarRetraso(cbxPedido.getSelectedItem().toString())) {
+                            aumentarCredito(venta.getNIT(),CreditoDB,VerificarPagoTotal());
+                        }
                         cbxPedido.removeAllItems();
                         CargarPedidos();
                     }
@@ -405,7 +409,7 @@ public class EntregarPedido extends javax.swing.JInternalFrame {
         }
         return Total;
     }
-    
+
     public boolean Entregar(String CodigoPedido) {
         Conexion conexion = new Conexion();
         String sql = "UPDATE Pedido SET Entregado = 1 WHERE CodigoPedido = '" + CodigoPedido + "'";
@@ -419,5 +423,51 @@ public class EntregarPedido extends javax.swing.JInternalFrame {
             System.err.println("Error al entregar pedido: " + e);
         }
         return false;
+    }
+
+    public boolean verificarRetraso(String CodigoPedido) {
+        Conexion conexion = new Conexion();
+        String producto = cbxPedido.getSelectedItem().toString();
+
+        try (Connection connection = conexion.getConnection()) {
+            String sql = "SELECT Retrasado FROM Pedido WHERE CodigoPedido = '" + CodigoPedido + "'";               //Consulta que se hara a la D.B. para obtener el precio y cantidad producto
+            PreparedStatement pst = connection.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                if (rs.getBoolean("Retrasado")) {
+                    
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al aumentar credito " + e);
+        }
+        return false;
+    }
+
+    public void aumentarCredito(String NIT, Double CreditoDB, boolean PagoTotal) {
+        Double TotalP = Double.parseDouble(txtTotal.getText());
+        Double NuevoCredito;
+        Conexion conexion = new Conexion();
+        if(PagoTotal)
+            NuevoCredito = CreditoDB + (TotalP*0.05);
+        else
+            NuevoCredito = CreditoDB + (TotalP*0.02);
+        String sql = "UPDATE Cliente SET Credito = " + NuevoCredito + " WHERE NIT = '" + NIT + "'";
+
+        try (Connection connection = conexion.getConnection()) {
+            PreparedStatement pst = connection.prepareStatement(sql);
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error al restar Credito al vender: " + e);
+        }
+    }
+    
+    private boolean VerificarPagoTotal(){
+        Double Anticipo = Double.parseDouble(lblAnticipo.getText());
+        Double Total = Double.parseDouble(txtTotal.getText());
+        if(Anticipo == Total)
+            return true;
+        return false;            
     }
 }
